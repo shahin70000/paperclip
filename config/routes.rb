@@ -1,7 +1,4 @@
 Paperclip::Application.routes.draw do
-  resources :avatars
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
