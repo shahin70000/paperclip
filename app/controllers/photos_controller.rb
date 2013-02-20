@@ -1,46 +1,29 @@
 class PhotosController < ApplicationController
 
-  # POST /photos
-  # POST /photos.json
   def create
-    @photo = Photo.new(params[:photo])
-
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render json: @photo, status: :created, location: @photo }
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.build(params[:photo])
+    respond_to do |format| 
+      if @album.save
+        format.html { redirect_to @album, notice: 'Photo was successfully added.' }
+        format.json { render json: @album, status: :created, location: @album }
       else
-        format.html { render action: "new" }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.html { redirect_to @album }
+        format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /photos/1
-  # PUT /photos/1.json
-  def update
-    @photo = Photo.find(params[:id])
-
-    respond_to do |format|
-      if @photo.update_attributes(params[:photo])
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /photos/1
-  # DELETE /photos/1.json
   def destroy
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])    
+    @photo = @album.photos.find_by_id(params[:id])
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to photos_url }
+      format.html { redirect_to @album }
       format.json { head :no_content }
     end
   end
+
+  
 end

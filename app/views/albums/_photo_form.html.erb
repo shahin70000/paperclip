@@ -1,0 +1,18 @@
+<%= form_for(@photo, :url => album_photos_path(@album, @photo), :html => { :method => "post" }) do |p| %>
+
+  <%= render 'shared/error_messages', this: @photo %>
+
+  <div class="field">
+    <%= p.label :title %><br />
+    <%= p.text_field :title %>
+  </div>	
+
+  <div class="field">
+    <%= p.label :image %><br />
+    <%= p.file_field :image %>
+  </div>  
+
+  <div class="actions">
+    <%= p.submit %>
+  </div>
+<% end %>

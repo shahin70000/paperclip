@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+  <%= render 'shared/error_messages', this: @album %>
 <p>
   <b>Title:</b>
   <%= @album.title %>
@@ -8,6 +8,18 @@
 <p>
   <b>User:</b>
   <%= @album.user_id %>
+</p>
+
+<p>
+  <b>add photo</b>
+	  <%= render 'photo_form' %>
+</p>
+
+<p>
+  <b>Photoes</b>
+	<ul>
+	  <%= render @photos unless @photos.count == 0%>
+	</ul>  
 </p>
 
 

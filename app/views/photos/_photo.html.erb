@@ -1,0 +1,5 @@
+<li>
+	<%= photo.title %></br>
+	<%= image_tag photo.image.url(:medium) %>
+	<%= link_to "delete", album_photo_path(@album.id, photo.id), :method => :delete, :confirm => "Are you sure?"%>
+</li>

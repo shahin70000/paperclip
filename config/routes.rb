@@ -1,10 +1,12 @@
 Paperclip::Application.routes.draw do
 
-  resources :albums
-
+  resources :albums do
+    resources :photos, only: [:create, :destroy]
+  end
 
   resources :users
 
+  root :to => 'user#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
