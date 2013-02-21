@@ -1,4 +1,0 @@
-<%= form_for @album.photos.new, :url => album_photos_path([@album, photo]), :method => :put, do |f| %>
-	<%= f.label :image, "Upload Painting:" %>
-	<%= f.file_field :image, multiple: true, name: "photo[image]" %>
-<% end %>
